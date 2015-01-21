@@ -1,0 +1,5 @@
+Django==1.7
+pyttk==0.3.2
+virtualenv==1.9.1
+virtualenvwrapper-win==1.1.5
+a nice cup of coffee :P
