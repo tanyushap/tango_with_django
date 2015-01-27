@@ -1,5 +1,3 @@
-__author__ = 'tanyushap'
-
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
 
@@ -48,6 +46,15 @@ def populate():
         title="Flask",
         url="http://flask.pocoo.org")
 
+    tanya_cat = add_cat(" Tanya Dimitrova Pavlova ")
+
+    add_page(cat = tanya_cat,
+             title= "Me",
+             url = "https://github.com/tanyushap")
+    add_page(cat = tanya_cat,
+             title= "Python Anywhere",
+             url = "https://www.pythonanywhere.com/user/tanyushap/files/home/tanyushap")
+
     # Print out what we have added to the user.
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
@@ -57,7 +64,7 @@ def add_page(cat, title, url, views=0):
     p = Page.objects.get_or_create(category=cat, title=title, url=url, views=views)[0]
     return p
 
-def add_cat(name,views = views,likes=likes):
+def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
     return c
 
