@@ -1,43 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
-
-    <body>
-       {% if user.is_authenticated %}
-            <h1>Rango says... hello {{ user.username }}!</h1>
-        {% else %}
-            <h1>Rango says... hello world!</h1>
-        {% endif %}
-
-        {% if user.is_authenticated %}
-            <a href="/rango/restricted/">Restricted Page</a><br />
-            <a href="/rango/logout/">Logout</a><br />
-            <a href="/rango/add_category/">Add a New Category</a><br /> <!-- See tango with django ch 8 -->
-        {% else %}
-            <a href="/rango/register/">Register Here</a><br />
-            <a href="/rango/login/">Login</a><br />
-        {% endif %}
-
-        <a href="/rango/about/">About</a><br/>
-
+{% extends 'base.html' %}
+    {% block body_block %}
         {% if categories %}
             <ul>
                 {% for category in categories %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
+                    <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
        {% else %}
             <strong>There are no categories present.</strong>
        {% endif %}
 	   <h1>Top 5 Pages:</h1>
-			<ol>	   
+			<ol>
 			{% for page in top5pages %}
 			<li> <a href="{{page.url}}">{{page.title}}</a></li>
 			{% endfor %}
 			</ol>
-
-    </body>
-</html>
+    {% endblock %}

@@ -1,50 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
-
-    <body>
-        <h1>Add a Page</h1>
-        {{category}}
+{% extends 'base.html' %}
+    {% block body_block %}
         <form id="page_form" method="post" action="/rango/category/{{category}}/add_page/">
+            {% if user.is_authenticated %}
+                {% csrf_token %}
+                <!-- Cross-Site Request Forgery (CSRF) token, which helps
+                to protect and secure the HTTP POST action that is initiated on the subsequent submission of a form
+                -->
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
 
-        {% if user.is_authenticated %}
-            <h1>Rango says... hello {{ user.username }}!</h1>
-        {% else %}
-            <h1>Rango says... hello world!</h1>
-        {% endif %}
-
-        {% if user.is_authenticated %}
-            <a href="/rango/restricted/">Restricted Page</a><br />
-            <a href="/rango/logout/">Logout</a><br />
-            <a href="/rango/add_category/">Add a New Category</a><br /> <!-- See tango with django ch 8 -->
-            {% csrf_token %}
-            <!-- Cross-Site Request Forgery (CSRF) token, which helps
-            to protect and secure the HTTP POST action that is initiated on the subsequent submission of a form
-            -->
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-        <input type="submit" name="submit" value="Create Page"/><br/>
-
-        {% else %}
-            <a href="/rango/register/">Register Here</a><br />
-            <a href="/rango/login/">Login</a><br />
-            <h3>You are not a registered user! Please register or log in to edit {{category}} category</h3>
-        {% endif %}
-
-        <a href="/rango/about/">About</a><br/>
-        <a href="/rango/index/">Index</a><br/>
-
-
-        </form>
-    </body>
-
-</html>
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+            <input type="submit" name="submit" value="Create Page"/>
+            </form>
+            {% endif %}
+    {% endblock %}

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-    {% load staticfiles %} <!-- a dictionary -->
-    <head>
-        <title>Rango</title>
-    <head>
-    </head>
-
-    <body>
-        <h1>Tanya D. Pavlova, 2068010p</h1>
-        UofG <strong>{{ boldmessage }}</strong><br />
-        <a href="/rango/about/">About</a><br />
-        <img src="{% static 'media/Me.jpg' %}" alt="Picture of me" /> <!-- fills the dict with an image -->
-
-    </body>
-
-</html>
+{% extends 'base.html' %}
+    {% block body_block %}
+        {% load staticfiles %} <!-- a dictionary -->
+            <h1>Tanya D. Pavlova, 2068010p</h1>
+            UofG <strong>{{ boldmessage }}</strong><br />
+            <a href="/rango/about/">About</a><br />
+            <img src="{% static 'media/Me.jpg' %}" alt="Picture of me" /> <!-- fills the dict with an image -->
+    {% endblock %}
