@@ -6,13 +6,13 @@
                     <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
                 {% endfor %}
             </ul>
-       {% else %}
+        {% else %}
             <strong>There are no categories present.</strong>
-       {% endif %}
-	   <h1>Top 5 Pages:</h1>
+        {% endif %}
+	    <h1>Top 5 Pages:</h1>
 			<ol>
 			{% for page in top5pages %}
-			<li> <a href="{{page.url}}">{{page.title}}</a></li>
+			    <li> <a href="{{page.url}}">{{page.title}}</a></li>
 			{% endfor %}
 			</ol>
     {% endblock %}
