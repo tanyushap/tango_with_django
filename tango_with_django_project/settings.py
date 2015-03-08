@@ -1,5 +1,5 @@
 """
-Django settings for tango_with_django_project project.
+Django settings for tango_with_django_project project by Tanya Pavlova, 2068010p UofG.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -37,8 +37,21 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'registration',
     'rango',
 )
+
+#User Profiles
+LOGIN_URL = '/rango/login/'
+
+# Registration
+REGISTRATION_OPEN = True        # If True, users can register
+ACCOUNT_ACTIVATION_DAYS = 7     # One-week activation window
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'  # after successful log in redirects to index
+LOGIN_URL = '/accounts/login/'  # if they are not logged in and are trying to access pages requiring authentication
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -94,5 +107,3 @@ STATICFILES_DIRS = (STATIC_PATH,)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Absolute path to the media directory
 
-#User Profiles
-LOGIN_URL = '/rango/login/'

@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
-    {% block body_block %}
-        {% load staticfiles %} <!-- a dictionary -->
-            <h1>Tanya D. Pavlova, 2068010p</h1>
-            <p> visits: {{ visits }}</p>
-            UofG <strong>{{ boldmessage }}</strong><br />
-            <a href="/rango/about/">About</a><br />
-            <img src="{% static 'media/Me.jpg' %}" alt="Picture of me" /> <!-- fills the dict with an image -->
-    {% endblock %}
+
+{% load staticfiles %}
+
+{% block title %}About{% endblock %}
+
+{% block body_block %}
+    <div class="page-header">
+                <h1>About</h1>
+            </div>
+            <div>
+            <p></strong>.</p>
+
+            <img  width="90" height="100" src="{% static "media/me.jpg" %}" alt="Picture of Rango" /> <!-- New line -->
+            </div>
+{% endblock %}

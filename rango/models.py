@@ -1,20 +1,30 @@
 from django.db import models
-
-# Create your models here.
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
-class Category(models.Model):
-        name = models.CharField(max_length=128, unique=True)
-        views = models.IntegerField(default=0)
-        likes = models.IntegerField(default=0)
-        slug = models.SlugField(unique=True)
+# Create your models here.
 
-        def save(self, *args, **kwargs):
+class Ox(models.Model):
+    horn_length = models.IntegerField()
+
+    class Meta:
+        ordering = ["horn_length"]
+        verbose_name_plural = "oxen"
+
+class Category(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+
+    class Meta:
+        verbose_name_plural = 'categories'
+    
+    def save(self, *args, **kwargs):
                 self.slug = slugify(self.name)
                 super(Category, self).save(*args, **kwargs)
 
-        def __unicode__(self):
+    def __unicode__(self):
                 return self.name
 
 class Page(models.Model):
@@ -26,6 +36,7 @@ class Page(models.Model):
     def __unicode__(self):
         return self.title
 
+    
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)

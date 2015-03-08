@@ -1,5 +1,5 @@
 """
-WSGI config for tango_with_django_project project.
+WSGI config for tango_with_django_project project from Tanya Pavlova, 2068010p UofG.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
