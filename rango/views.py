@@ -8,6 +8,7 @@ from rango.forms import CategoryForm
 from rango.forms import PageForm
 from rango.forms import UserForm, UserProfileForm
 from datetime import datetime
+from bing_search import run_query
 
 
 def index(request):
@@ -141,4 +142,15 @@ def add_page(request, category_name_slug):
 
     return render(request, "rango/add_page.html", context_dict)
 
+def search(request):
 
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+
+        if query:
+            # Run our Bing function to get the results list!
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list})
