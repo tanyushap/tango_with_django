@@ -13,9 +13,10 @@ from datetime import datetime
 def index(request):
 
     category_list = Category.objects.order_by('-likes')[:5]
-    page_list = Page.objects.order_by('-views')[:5]
+    context_dict = {'categories': category_list}
 
-    context_dict = {'categories': category_list, 'pages': page_list}
+    page_list = Page.objects.order_by('-views')[:5]
+    context_dict['top5pages'] = page_list
 
     visits = request.session.get('visits')
     if not visits:
